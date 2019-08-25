@@ -25,6 +25,15 @@ ansible --version
   => ansible 2.8.4
 ```
 
+- Amazon Linux (EC2)
+
+```
+yum --enablerepo=epel install ansible
+
+ansible --version
+  => ansible 2.6.17
+```
+
 ## Guest
 
 - CentOS
