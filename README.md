@@ -34,6 +34,12 @@ ansible --version
   => ansible 2.6.17
 ```
 
+- CentOS7
+
+```
+yum -y install ansible
+```
+
 ## Guest
 
 - CentOS
