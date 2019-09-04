@@ -1,0 +1,21 @@
+- hosts: test1.tabiya.local
+  handlers:
+  - name: oreo_httpd
+    service: name=httpd state=restarted
+
+  tasks:
+  - name: edit httpd_config 1:sername 2:listen chenge
+    lineinfile: >
+      dest=/etc/httpd/conf/httpd.conf
+      regexp="{{ item.regexp }}"
+      line="{{ item.line }}"
+    with_items:
+    - { regexp: 'ServerName 192.168.2.91:8080', line: 'ServerName 192.168.2.91:8085' }
+    lineinfile: >
+      dest=/etc/httpd/conf/httpd.conf
+      regexp="{{ item.regexp }}"
+      line="{{ item.line }}"
+    with_items:
+    - { regexp: 'Listen 8080', line: 'Listen 8085' }
+    notify: oreo_httpd
+    tags: Edit_httpd_config
