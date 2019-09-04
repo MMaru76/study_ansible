@@ -1,13 +1,13 @@
-- hosts: ans1.tabiya.local
-# 他ユーザー権限を利用する(デフォルト:root)
-  become: yes
-  # 他ユーザー権限を利用する方法
-  # become_method: sudo
+# 対象のホストを指定
+- hosts: oreo
   # タスクの定義
   tasks:
-    - name: httpd is installed
-      yum:
-        named: httpd
-        state: latest
-    # - name: httpd is running and enabled
-    #   service: "named=httpd state=started enabled=yes"
+  # Apacheのインストール
+  - name: httpd is installed
+    yum: name=httpd state=installed
+  # 起動と自動起動の設定
+  - name: httpd is running and enabled
+    service: name=httpd state=started enabled=yes
+
+# 起動確認コマンド
+# ansible oreo -m shell -a "systemctl status httpd | head -3"

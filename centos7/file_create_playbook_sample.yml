@@ -1,11 +1,8 @@
-# 対象ホスト名 または グループ名
-- hosts: ans
-# タスクの定義
+- hosts: test1.tabiya.local
   tasks:
-# 任意のタスク名
   - name: Test Task
-# file モジュールを利用してファイルの状態を記述
-    file: path=/home/maru/test.conf state=touch owner=maru group=maru mode=0600
+    file: path=/root/test1.conf state=touch owner=root group=root mode=0600
+
 
 # 実行コマンド
 # # ansible-playbook plyabook_sample.yml
