@@ -38,11 +38,14 @@ ansible --version
 
 ```
 yum -y install ansible
+
+ansible --version
+  => ansible 2.4.2.0
 ```
 
 ## Guest
 
-- CentOS
+- CentOS系
 
 ```
 sudo yum -y install python-simplejson
