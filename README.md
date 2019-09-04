@@ -80,6 +80,20 @@ ansible all -m raw -a 'yum -y install python-simplejson'
 
 ## 基本的な実行コマンド
 
+### ホストの各種指定方法
+
+- 特定のサブドメインに対して
+  - ans.tabiya.local
+- 特定のサブドメインのホストすべて
+  - ans*.tabiya.local
+- ans1からans50までに対して
+  - ans[01:50].tabiya.local
+- ans か dns(or 指定)
+  - ans:dns
+- [編集中]not指定
+- [編集中]and指定
+- [編集中]複数指定
+
 ### ping の確認方法
 
 対象のホスト達が生存してるかの確認を行う｡

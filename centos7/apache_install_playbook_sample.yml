@@ -1,0 +1,13 @@
+- hosts: ans1.tabiya.local
+# 他ユーザー権限を利用する(デフォルト:root)
+  become: yes
+  # 他ユーザー権限を利用する方法
+  # become_method: sudo
+  # タスクの定義
+  tasks:
+    - name: httpd is installed
+      yum:
+        named: httpd
+        state: latest
+    # - name: httpd is running and enabled
+    #   service: "named=httpd state=started enabled=yes"

@@ -1,0 +1,26 @@
+# 対象ホスト名 または グループ名
+- hosts: ans
+# タスクの定義
+  tasks:
+# 任意のタスク名
+  - name: Test Task
+# file モジュールを利用してファイルの状態を記述
+    file: path=/home/maru/test.conf state=touch owner=maru group=maru mode=0600
+
+# 実行コマンド
+# # ansible-playbook plyabook_sample.yml
+
+# 実行結果
+# PLAY [ans] **************************************************************************
+
+# TASK [Gathering Facts] **************************************************************
+# ok: [ans2.tabiya.local]
+# ok: [ans1.tabiya.local]
+
+# TASK [Test Task] ********************************************************************
+# changed: [ans2.tabiya.local]
+# changed: [ans1.tabiya.local]
+
+# PLAY RECAP **************************************************************************
+# ans1.tabiya.local          : ok=2    changed=1    unreachable=0    failed=0   
+# ans2.tabiya.local          : ok=2    changed=1    unreachable=0    failed=0 
