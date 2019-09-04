@@ -1,0 +1,23 @@
+- hosts: test2.tabiya.local
+  tasks:
+  - name: General packages are installed
+    yum: name={{item}} state=installed
+    with_items:
+      - iperf3
+      - lshw
+      - cockpit
+    tags: General_packages
+
+
+# インストール済み確認コマンド
+# ansible test1.tabiya.local -m shell -a "rpm -qa | grep -E 'iperf3|lshw|cockpit'"
+
+#  [WARNING]: Consider using yum, dnf or zypper module rather than running rpm
+
+# test1.tabiya.local | SUCCESS | rc=0 >>
+# cockpit-176-4.el7.centos.x86_64
+# cockpit-ws-176-4.el7.centos.x86_64
+# cockpit-system-176-4.el7.centos.noarch
+# iperf3-3.1.7-2.el7.x86_64
+# cockpit-bridge-176-4.el7.centos.x86_64
+# lshw-B.02.18-12.el7.x86_64
