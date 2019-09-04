@@ -1,0 +1,24 @@
+# vim laybook_sample.yml
+
+- hosts: oreo
+  tasks:
+    - include_tasks: tasks/included.yml
+      vars:
+        general_packages: iperf3
+    - include_tasks: tasks/included.yml
+      vars:
+        general_packages: lshw
+    - include_tasks: tasks/included.yml
+      vars:
+        general_packages: cockpit
+
+# ==================================================
+
+# vim tasks/included.yml
+- name: General packages are installed
+  yum: name="{{ item }}" state=installed
+  with_items:
+    - "{{ general_packages }}"
+  tags: General_Packages
+
+# yum -y autoremove cockpit lshw iperf3
