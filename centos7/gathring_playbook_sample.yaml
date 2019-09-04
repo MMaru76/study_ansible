@@ -1,0 +1,23 @@
+- hosts: test1.tabiya.local
+  tasks:
+  - name: Refer to Gathering Facts
+    command: echo "{{ ansible_distribution }} {{ ansible_distribution_version }}"
+    register: dist
+  - debug: msg="{{ dist.stdout }}"
+
+
+# 実行コマンド
+# ansible-playbook plyabook_sample.yml
+
+# 実行結果
+# PLAY [test1.tabiya.local] **********************************************************
+# TASK [Gathering Facts] *************************************************************
+# ok: [test1.tabiya.local]
+# TASK [Refer to Gathering Facts] ****************************************************
+# changed: [test1.tabiya.local]
+# TASK [debug] ***********************************************************************
+# ok: [test1.tabiya.local] => {
+    # "msg": "CentOS 7.6.1810"
+# }
+# PLAY RECAP *************************************************************************
+# test1.tabiya.local         : ok=3    changed=1    unreachable=0    failed=0
