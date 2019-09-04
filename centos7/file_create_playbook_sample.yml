@@ -1,4 +1,4 @@
-- hosts: test1.tabiya.local
+- hosts: oreo
   tasks:
   - name: Test Task
     file: path=/root/test1.conf state=touch owner=root group=root mode=0600
@@ -7,17 +7,5 @@
 # 実行コマンド
 # # ansible-playbook plyabook_sample.yml
 
-# 実行結果
-# PLAY [ans] **************************************************************************
-
-# TASK [Gathering Facts] **************************************************************
-# ok: [ans2.tabiya.local]
-# ok: [ans1.tabiya.local]
-
-# TASK [Test Task] ********************************************************************
-# changed: [ans2.tabiya.local]
-# changed: [ans1.tabiya.local]
-
-# PLAY RECAP **************************************************************************
-# ans1.tabiya.local          : ok=2    changed=1    unreachable=0    failed=0   
-# ans2.tabiya.local          : ok=2    changed=1    unreachable=0    failed=0 
+# 確認コマンド
+# ansible oreo -m command -a "ls -al /root"
