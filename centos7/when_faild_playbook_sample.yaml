@@ -1,0 +1,34 @@
+- hosts: test1.tabiya.local
+  tasks:
+  - name: index file exists or not
+    shell: touch -f /var/www/html/index3.html
+    ignore_errors: false
+    register: file_exists
+    failed_when: file_exists.rc not in [0, 1]
+
+  - name: put index.html
+    shell: echo "httpd index" > /var/www/html/index3.html
+    when: file_exists.rc == 1
+
+# [ホスト側] 実行コマンド
+# ansible-playbook plyabook_sample.yml
+
+# PLAY [test1.tabiya.local] **********************************************************
+
+# TASK [Gathering Facts] *************************************************************
+# ok: [test1.tabiya.local]
+
+# TASK [index file exists or not] ****************************************************
+# changed: [test1.tabiya.local]
+
+# TASK [put index.html] **************************************************************
+# changed: [test1.tabiya.local]
+
+# PLAY RECAP *************************************************************************
+# test1.tabiya.local         : ok=3    changed=2    unreachable=0    failed=0
+
+# [ゲスト側] 実行確認
+# # ls -l /var/www/html/
+# -rw-r--r-- 1 root root 12 Sep  4 16:22 index.html
+# # cat /var/www/html/index.html
+# httpd index
