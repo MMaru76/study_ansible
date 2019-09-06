@@ -1,0 +1,5 @@
+- hosts: oreo
+  roles:
+    - ins_python_lib
+    - ins_httpd
+

@@ -1,0 +1,8 @@
+setuptools:
+  - python-setuptools
+
+py_pip:
+  - pip
+
+py_libs:
+  - httplib2

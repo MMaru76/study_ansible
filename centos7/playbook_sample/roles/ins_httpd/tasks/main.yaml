@@ -1,0 +1,21 @@
+- name: httpd is installed dayo
+  yum: name="{{ item }}" state=installed
+  with_items:
+    - "{{ packages }}"
+  tags: instal_httpd
+
+- name: edit http.conf
+  lineinfile: >
+    dest=/etc/httpd/conf/httpd.conf
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+  with_items:
+  - { regexp: "^#ServerName", line: "ServerName {{ ansible_fqdn }}:8080" }
+  - { regexp: "^Listen 80", line: "Listen 8080"}
+  tags: edit_httpd.conf
+
+- name: httpd is running and enabled
+  service: name=httpd state=restarted enabled=yes
+
+- name: put index.html
+  copy: src=index.html dest=/var/www/html owner=root group=root mode=0644

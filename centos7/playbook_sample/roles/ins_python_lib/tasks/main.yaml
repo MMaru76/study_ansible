@@ -1,0 +1,17 @@
+- name: setuptools is installed
+  yum: name="{{ item }}" state=installed
+  with_items:
+    - "{{ setuptools }}"
+  tags: install_setuptools
+
+- name: pip is installed
+  easy_install: name="{{ item }}"
+  with_items:
+    - "{{ py_pip }}"
+  tags: install_pip
+
+- name: httplib2 are installed
+  pip: name="{{ item }}"
+  with_items:
+    - "{{ py_libs }}"
+  tags: install_httplib2
