@@ -1,0 +1,9 @@
+- hosts: test4.tabiya.local
+  tasks:
+    sudo: yes
+      remote_user: maru
+      vars:
+        username: oreouser
+      tasks:
+        - name: user create
+          user: name={{ username }} group=admin shell=/bin/bash
