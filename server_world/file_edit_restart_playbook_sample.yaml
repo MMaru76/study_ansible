@@ -1,21 +1,27 @@
-- hosts: test1.tabiya.local
+- hosts: test3.tabiya.local
   handlers:
   - name: oreo_httpd
     service: name=httpd state=restarted
 
   tasks:
-  - name: edit httpd_config 1:sername 2:listen chenge
+  - name: httpd is installed
+    yum: name=httpd state=installed
+
+  - name: edit httpd_config 1:sername
     lineinfile: >
       dest=/etc/httpd/conf/httpd.conf
       regexp="{{ item.regexp }}"
       line="{{ item.line }}"
     with_items:
-    - { regexp: 'ServerName 192.168.2.91:8080', line: 'ServerName 192.168.2.91:8085' }
+    - { regexp: '#ServerName www.example.com:80', line: 'ServerName 192.168.2.93:8080' }
+
+  - name: edit httpd_config 2:listen chenge
     lineinfile: >
       dest=/etc/httpd/conf/httpd.conf
       regexp="{{ item.regexp }}"
       line="{{ item.line }}"
     with_items:
-    - { regexp: 'Listen 8080', line: 'Listen 8085' }
+    - { regexp: 'Listen 80', line: 'Listen 8080' }
+
     notify: oreo_httpd
     tags: Edit_httpd_config
