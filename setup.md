@@ -16,7 +16,7 @@ ansible グループ群 -k -m shell -a "systemctl stop firewalld ; systemctl dis
 パスワード無し
 
 ```
-ansible グループ群 -m shell -a "systemctl stop firewalld ; systemctl disable firewalld; sed -i -e "s/enforcing/disabled/g" /etc/selinux/config ; yum -y update ; yum -y groupinstall base ; shutdown -h"
+ansible グループ群 -m shell -a "systemctl stop firewalld ; systemctl disable firewalld ; sed -i -e "s/enforcing/disabled/g" /etc/selinux/config ; sed -i -e '$a DNS2="8.8.8.8"' /etc/sysconfig/network-scripts/ifcfg-ens192 ; systemctl restart network ; yum -y update ; yum -y groupinstall base ; shutdown -h"
 ```
 
 上記のコマンドを実行する事によって､対象のグループホストに対して特定のコマンドを実行する事が出来ます｡
@@ -34,3 +34,5 @@ ansible グループ群 -m shell -a "systemctl stop firewalld ; systemctl disabl
 # yum -y update ; yum -y groupinstall base ; reboot
 ```
 
+DNS2="8.8.8.8"
+vim /etc/sysconfig/network-scripts/ifcfg-ens192
