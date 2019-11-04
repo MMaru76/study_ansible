@@ -41,7 +41,7 @@ host_key_checking = False
 gathering = smart
 ```
 
-## ansible コマンドの実行01
+## ansible コマンドの実行 01
 
 ```bash
 $ vim effective_ansible/sec2/inventory.ini
@@ -61,7 +61,7 @@ localhost | SUCCESS => {
 }
 ```
 
-## ansible コマンドの実行02
+## ansible コマンドの実行 02
 
 ```bash
 $ ansible -i inventory.ini test_sv -m file -a 'path=$HOME/test.txt state=touch mode=0644'
@@ -88,10 +88,10 @@ drwxrwxr-x 3 maru maru 18 10月 30 22:27 effective_ansible
 -rw-r--r-- 1 maru maru  0 10月 30 23:03 test.txt
 ```
 
-## ansible コマンドの実行02
+## ansible コマンドの実行 02
 
 - -b オプション
-  - root権限が必要なものは､｢-b｣(become)オプション
+  - root 権限が必要なものは､｢-b｣(become)オプション
 - -K オプション
   - 検索中
 
