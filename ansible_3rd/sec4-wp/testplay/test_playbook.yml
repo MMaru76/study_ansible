@@ -1,0 +1,16 @@
+---
+- hosts: apps
+  tasks:
+  - name : create directory
+    file:
+      path: /home/maru/tmp1
+      state: directory
+      owner: maru
+      mode: 0755
+
+  - name: copy file
+    copy:
+      src: /etc/hosts
+      dest: /home/maru/tmp1/hosts
+      owner: maru
+      mode: 0644
