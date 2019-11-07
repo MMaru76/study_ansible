@@ -1,0 +1,34 @@
+---
+- name: Deploy Database for WordPress Ver.0.1
+  hosts: database
+  become: true
+    # vars:
+    #   ansible_become_pass: 'password'
+    #   ##password = 適時編集 ##将来的には環境変数として設定予定
+    # environment:
+    #   http_proxy: "http://proxy.tabiya.local:8080"
+    #   https_proxy: "http://proxy.tabiya.local:8080"
+  roles:
+    # Database Build
+    - { role: common, tags: common }    # [all] OSの基本設定
+    - { role: mariadb, tags: mariadb }  # [databases] データベースの構築
+    # Database Load Balancing Build
+    - { role: haproxy, cluster_service: db_cluster, tags: haproxy }
+    - { role: keepalived, cluster_service: db_cluster, tags: keepalived }
+
+- name: Deploy Application for WordPress
+  hosts: apps
+  become: true
+  roles:
+    - { role: common, tags: common }        # OSの基本設定
+    - { role: nginx, tags: nginx }          # PHPの為の実行環境構築
+    - { role: php-fpm, tags: php-fpm }      # php-fpmの導入
+    - { role: wordpress, tags: wordpress }  # WordPressの展開
+
+- name: Deploy LoadBalancer for wordPress
+  hosts: lbs
+  become: true
+  role:
+    - { role: common, tags: common }
+    - { role: haproxy, cluster_service: app_cluster, tags: haproxy }
+    - { role: keepalived, cluster_service: app_cluster, tags: keepalived }
