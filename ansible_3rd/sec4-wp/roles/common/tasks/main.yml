@@ -1,0 +1,54 @@
+---
+# # Selinuxのモード変更
+# - name: configure / Selinux permissived
+#   selinux:
+#     policy: targeted
+#     state: permissive
+#   when : ansible_selinux.config_mode == 'enforcing'
+
+# IPv6 インターフェイスの無効化
+- name: configure / Disable ipv6 interface
+  sysctl:
+    state: present
+    name: "{{ item }}"
+    value: '1'
+    sysctl_set: yes
+    reload: yes
+  loop:
+    - net.ipv6.conf.all.disable_ipv6
+    - net.ipv6.conf.default.disable_ipv6
+
+# yumパッケージのアップデート
+- name: configure / Update yum packages
+  yum:
+    name: '*'
+    state: latest
+    update_cache: yes
+
+# EPEL リポジトリの設定
+- name: configure / Import EPEL Repository
+  yum:
+    name: epel-release
+    state: latest
+    update_cache: yes
+
+# ## 確認の為の実行
+# - name: create directory
+#   file:
+#     path: /home/maru/tmp1
+#     state: directory
+#     owner: maru
+#     mode: 0755
+
+# - name: copy file
+#   copy:
+#     src: /etc/hosts
+#     dest: /home/maru/tmp1/hosts
+#     owner: maru
+#     mode: 0644
+
+# 実行コマンド
+# $ ansible-playbook -i inventory.ini wordpress_deploy.yml -t common
+
+# 確認コマンド
+# $ ansible -i inventory.ini databases,apps,lbs,db_vip,app_vip -m command -a 'ls -al tmp1' | grep hosts | wc -l

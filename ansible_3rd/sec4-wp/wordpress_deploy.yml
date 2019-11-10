@@ -1,6 +1,6 @@
 ---
 - name: Deploy Database for WordPress Ver.0.1
-  hosts: database
+  hosts: databases
   become: true
     # vars:
     #   ansible_become_pass: 'password'
@@ -16,7 +16,7 @@
     - { role: haproxy, cluster_service: db_cluster, tags: haproxy }
     - { role: keepalived, cluster_service: db_cluster, tags: keepalived }
 
-- name: Deploy Application for WordPress
+- name: Deploy Application for WordPress Ver.0.1
   hosts: apps
   become: true
   roles:
@@ -25,10 +25,22 @@
     - { role: php-fpm, tags: php-fpm }      # php-fpmの導入
     - { role: wordpress, tags: wordpress }  # WordPressの展開
 
-- name: Deploy LoadBalancer for wordPress
+- name: Deploy LoadBalancer for wordPress Ver.0.1
   hosts: lbs
   become: true
-  role:
+  roles:
     - { role: common, tags: common }
     - { role: haproxy, cluster_service: app_cluster, tags: haproxy }
     - { role: keepalived, cluster_service: app_cluster, tags: keepalived }
+
+- name: Deploy Web-vip for WordPress Ver.0.1
+  hosts: app_vip
+  become: true
+  roles:
+    - { role: common, tags: common }        # OSの基本設定
+
+- name: Deploy DB-vip for WordPress Ver.0.1
+  hosts: db_vip
+  become: true
+  roles:
+    - { role: common, tags: common }        # OSの基本設定
