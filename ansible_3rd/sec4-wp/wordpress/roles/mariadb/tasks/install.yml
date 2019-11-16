@@ -1,0 +1,17 @@
+---
+# tasks file for ./roles/mariadb
+
+- name: install / Import repository key
+  yum_repository:
+    name: mariadb
+    description: Galera Cluster Repo
+    baseurl: http://yum.mariadb.org/{{ mariadb_release }}/centos7-amd64/
+    gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgcheck: yes
+    file: MariaDB
+
+- name: install / Install required packages
+  yum:
+    name: "{{ mariadb_packages }}"
+    state: present
+    enablerepo: mariadb
