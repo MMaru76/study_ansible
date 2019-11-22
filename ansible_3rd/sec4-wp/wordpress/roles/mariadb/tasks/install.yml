@@ -1,6 +1,5 @@
 ---
-# tasks file for ./roles/mariadb
-
+## MariaDBのリポジトリ登録
 - name: install / Import repository key
   yum_repository:
     name: mariadb
@@ -10,6 +9,7 @@
     gpgcheck: yes
     file: MariaDB
 
+## MariaDBのインストール
 - name: install / Install required packages
   yum:
     name: "{{ mariadb_packages }}"
