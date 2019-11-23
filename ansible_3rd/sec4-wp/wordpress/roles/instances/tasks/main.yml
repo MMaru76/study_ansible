@@ -1,0 +1,5 @@
+- name: All Instance Update
+  yum:
+    name: '*'
+    state: latest
+    update_cache: yes

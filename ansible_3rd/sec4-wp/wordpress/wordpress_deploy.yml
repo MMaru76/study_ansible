@@ -1,4 +1,10 @@
 ---
+- name: YUM is UPDATEEEEEEE
+  hosts: all
+  become: true
+  roles:
+    - { role: instances, tags: instances_tags } # 全体のアップデート
+
 - name: Deploy Database for WordPress Ver.0.1
   hosts: databases
   become: true
