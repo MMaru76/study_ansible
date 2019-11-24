@@ -1,14 +1,14 @@
 ---
-# tasks file for ./roles/haproxy
+## firewalld ポート許可
+# - name: check_install / Allow ports for firewalld
+#   firewalld:
+#     port: "{{ item }}"
+#     permanent: yes
+#     immediate: yes
+#     state: enabled
+#   loop: "{{ haproxy_firewalld_port }}"
 
-- name: check_install / Allow ports for firewalld
-  firewalld:
-    port: "{{ item }}"
-    permanent: yes
-    immediate: yes
-    state: enabled
-  loop: "{{ haproxy_firewalld_port }}"
-
+## 非ローカルIPへバインディング許可
 - name: check_install / Ensure binding to non-up interfaces
   sysctl:
     state: present

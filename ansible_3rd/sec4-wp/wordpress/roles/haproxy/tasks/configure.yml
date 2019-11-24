@@ -1,6 +1,5 @@
 ---
-# tasks file for ./roles/haproxy
-
+## HAProxy 設定の配備
 - name: configure / Setup configuration file
   template:
     src: haproxy.cfg.j2
@@ -10,12 +9,14 @@
     mode: 0644
     backup: yes
 
+## HAProxy のリロード
 - name: configure / Start haproxy service
   service:
     name: haproxy
     state: reloaded
     enabled: yes
 
+## HAProxy 起動確認
 - name: configure / Wait for haproxy restart
   wait_for:
     port: "{{ haproxy_stats_port }}"

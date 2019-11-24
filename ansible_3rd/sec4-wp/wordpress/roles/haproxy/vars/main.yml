@@ -1,9 +1,9 @@
 ---
 # vars file for ./roles/haproxy
 
-haproxy_user: haproxy
-haproxy_group: haproxy
-haproxy_pass: haproxy
+haproxy_user: maruprouser
+haproxy_group: maruprogp
+haproxy_pass: marupass
 
 haproxy_stats_port: 10080
 

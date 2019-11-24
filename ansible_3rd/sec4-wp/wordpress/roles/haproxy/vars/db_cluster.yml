@@ -1,6 +1,6 @@
 ---
 # vars file for ./roles/haproxy
-haproxy_frontend_address: "{{ hostvars.db_v1i.ansible_host }}"
+haproxy_frontend_address: "{{ hostvars.db-v1e.ansible_host }}"
 haproxy_frontend_port: 3306
 haproxy_frontend_option:
   - "maxconn  1000"

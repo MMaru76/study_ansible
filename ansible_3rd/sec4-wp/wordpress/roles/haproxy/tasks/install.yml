@@ -1,6 +1,5 @@
 ---
-# tasks file for ./roles/haproxy
-
+## HAProxy インストール
 - name: install / Install required packages
   yum:
     name: "{{ haproxy_packages }}"
