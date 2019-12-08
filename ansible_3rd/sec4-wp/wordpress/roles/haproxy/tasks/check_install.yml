@@ -9,10 +9,10 @@
 #   loop: "{{ haproxy_firewalld_port }}"
 
 ## 非ローカルIPへバインディング許可
-- name: check_install / Ensure binding to non-up interfaces
-  sysctl:
-    state: present
-    name: 'net.ipv4.ip_nonlocal_bind'
-    value: '1'
-    sysctl_set: yes
-    reload: yes
+# - name: check_install / Ensure binding to non-up interfaces
+#   sysctl:
+#     state: present
+#     name: 'net.ipv4.ip_nonlocal_bind'
+#     value: '1'
+#     sysctl_set: yes
+#     reload: yes

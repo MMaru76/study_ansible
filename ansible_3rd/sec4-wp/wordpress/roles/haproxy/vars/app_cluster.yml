@@ -1,6 +1,6 @@
 ---
 # vars file for ./roles/haproxy
-haproxy_frontend_address: "{{ hostvars.web-v1e.ansible_host }}"
+haproxy_frontend_address: "{{ hostvars[app_vip].ansible_host }}"
 haproxy_frontend_port: 80
 haproxy_frontend_option:
   - "maxconn  1000"
@@ -9,7 +9,7 @@ haproxy_backend_app: "{{ cluster_service }}"
 haproxy_backend_groups: apps
 haproxy_backend_option:
   - "balance  source"
-  - "http-request set-header Host {{ hostvars.app_v1e.ansible_host }}"
+  - "http-request set-header Host {{ hostvars[app_vip].ansible_host }}"
 haproxy_firewalld_port:
   - "{{ haproxy_stats_port }}/tcp"
   - "{{ haproxy_frontend_port }}/tcp"
