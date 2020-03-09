@@ -5,7 +5,7 @@ mkdir .ssh/ ; \
 chmod 700 .ssh/ ; \
 touch .ssh/authorized_keys ; \
 chmod 644 .ssh/authorized_keys ; \
-vim .ssh/authorized_keys
+vi .ssh/authorized_keys
 ```
 
 
