@@ -1,8 +1,6 @@
 # study_ansible
 
 ## setup
-明日晴れるかな??
-oreooreoore
 
 - 編集中
 <!--
