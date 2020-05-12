@@ -1,7 +1,8 @@
 # study_ansible
 
 ## setup
-testtttt
+明日晴れるかな??
+oreooreoore
 
 - 編集中
 <!--
