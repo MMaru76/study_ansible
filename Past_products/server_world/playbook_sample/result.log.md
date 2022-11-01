@@ -2,7 +2,8 @@
 
 URL : http://test2.tabiya.local:8080/
 
-[![Image from Gyazo](https://i.gyazo.com/94f82b8839b2b4648a7175ce9a355a47.png)](https://gyazo.com/94f82b8839b2b4648a7175ce9a355a47)
+![94f82b8839b2b4648a7175ce9a355a47](https://user-images.githubusercontent.com/20497766/199158381-ef11b0d4-68fa-4e73-aa98-fd3c1ce83a63.png)
+
 
 # 実行結果
 
